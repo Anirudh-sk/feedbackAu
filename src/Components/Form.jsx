@@ -16,6 +16,7 @@ import Radio from '@mui/material/Radio';
 import { VerifiedUserRounded } from '@mui/icons-material';
 import React, { useState } from 'react'
 import Building from './Building';
+import Toilet from './Toilet';
 
 
 function Copyright(props) {
@@ -47,6 +48,7 @@ export default function Form() {
     const [Type, setType] = useState("")
     const [Complaint, setComplaint] = useState("")
     const [Cleanliness, setCleanliness] = useState(0)
+    const [WashedRegularly, setWashedRegularly] = useState(0)
     
 
 
@@ -57,7 +59,8 @@ export default function Form() {
             Phone,
             Type,
             Complaint,
-            Cleanliness
+            Cleanliness,
+            WashedRegularly
         }
         console.log(data);
     };
@@ -122,7 +125,7 @@ export default function Form() {
                             </Grid><br />
 
                             {
-                                floor && toilet ? <></> : <Building setComplaint={setComplaint} setCleanliness={setCleanliness} />
+                                floor && toilet ? <Toilet setWashedRegularly={setWashedRegularly} /> : <Building setComplaint={setComplaint} setCleanliness={setCleanliness} />
                             }
 
 

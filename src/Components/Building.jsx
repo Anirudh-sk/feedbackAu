@@ -10,7 +10,7 @@ function Building({setComplaint, setCleanliness}) {
         <>
            
             <Grid item xs={12}>
-                <Typography variant='h6' component='h1' >Cleanliness</Typography>
+                <Typography variant='h6' component='h1' >Cleanliness of the Building</Typography>
                 <Slider  onChange={e => { setCleanliness(e.target.value) }} valueLabelDisplay="auto" defaultValue={5} step={1} marks min={0} max={10} />
             </Grid>
 
