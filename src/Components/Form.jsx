@@ -10,12 +10,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
+import Slider from '@mui/material/Slider';
 import Radio from '@mui/material/Radio';
 
 
 import { VerifiedUserRounded } from '@mui/icons-material';
 import React, { useState } from 'react'
-import Building from './Building';
 import Toilet from './Toilet';
 
 
@@ -49,7 +49,10 @@ export default function Form() {
     const [Complaint, setComplaint] = useState("")
     const [Cleanliness, setCleanliness] = useState(0)
     const [WashedRegularly, setWashedRegularly] = useState(0)
-    
+    const [WaterSupply, setWaterSupply] = useState(0)
+    const [FlushWorking, setFlushWorking] = useState(0)
+    const [WaterLekage, setWaterLekage] = useState(0)
+
 
 
     const handleSubmit = (event) => {
@@ -60,7 +63,10 @@ export default function Form() {
             Type,
             Complaint,
             Cleanliness,
-            WashedRegularly
+            WashedRegularly,
+            WaterLekage,
+            WaterSupply,
+            FlushWorking
         }
         console.log(data);
     };
@@ -125,8 +131,24 @@ export default function Form() {
                             </Grid><br />
 
                             {
-                                floor && toilet ? <Toilet setWashedRegularly={setWashedRegularly} /> : <Building setComplaint={setComplaint} setCleanliness={setCleanliness} />
+                                floor && toilet ? <Toilet setWashedRegularly={setWashedRegularly} setWaterSupply={setWaterSupply} setFlushWorking={setFlushWorking} setWaterLekage={setWaterLekage} /> : <></>
                             }
+
+                            <Grid item xs={12}>
+                                <Typography variant='h6' component='h1' >Rate our Overall Cleanliness</Typography>
+                                <Slider onChange={e => { setCleanliness(e.target.value) }} valueLabelDisplay="auto" defaultValue={5} step={1} marks min={0} max={10} />
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <TextField
+                                    id="outlined-textarea"
+                                    label="Complaints"
+                                    placeholder="Complaint"
+                                    multiline
+                                    fullWidth
+                                    onChange={e => { setComplaint(e.target.value) }}
+                                />
+                            </Grid>
 
 
                         </Grid>
