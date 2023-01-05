@@ -14,9 +14,9 @@ import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
 import {InputAdornment} from '@mui/material'
 
-import { Image, VerifiedUserRounded } from "@mui/icons-material";
+
+import { VerifiedUserRounded } from "@mui/icons-material";
 import React, { useState } from "react";
-import Toilet from "./Toilet";
 
 function Copyright(props) {
   return (
@@ -38,23 +38,23 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Form() {
-  const queryParameters = new URLSearchParams(window.location.search);
+export default function Food() {
+  // const queryParameters = new URLSearchParams(window.location.search);
   // const building = queryParameters.get("building");
-  const floor = queryParameters.get("floor");
-  const toilet = queryParameters.get("toilet");
+  // const floor = queryParameters.get("floor");
 
   const [Name, setName] = useState("");
   const [Phone, setPhone] = useState(0);
   const [isError, setIsError] = useState(false);
 
   const [Type, setType] = useState("");
-  const [Complaint, setComplaint] = useState("");
+  const [Feedback, setFeedback] = useState("");
   const [Cleanliness, setCleanliness] = useState(5);
-  const [WashedRegularly, setWashedRegularly] = useState(0);
-  const [WaterSupply, setWaterSupply] = useState(0);
-  const [FlushWorking, setFlushWorking] = useState(0);
-  const [WaterLekage, setWaterLekage] = useState(0);
+  const [FoodQuality, setFoodQuality] = useState(5);
+  const [FoodTaste, setFoodTaste] = useState(5);
+  const [ServiceQuality, setServiceQuality] = useState(5);
+  const [Ambience, setAmbience] = useState(5);
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,12 +62,13 @@ export default function Form() {
       Name,
       Phone,
       Type,
-      Complaint,
+      Feedback,
       Cleanliness,
-      WashedRegularly,
-      WaterLekage,
-      WaterSupply,
-      FlushWorking,
+      FoodQuality,
+      FoodTaste,
+      ServiceQuality,
+      Ambience
+      
     };
     console.log(data);
   };
@@ -86,9 +87,9 @@ export default function Form() {
         >
           <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width:"80px", height:"80px" }} alt="Anna Univ Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYIT9DIpbpoNHlF_sikxAN_ujCgKAYm_Iy97Ufwdmg8s0hMN1YtYgR0mI0XuhOsGFwR5o&usqp=CAU">
             
-          </Avatar>
+            </Avatar>
           <Typography component="h1" variant="h5">
-            Feedback Form
+            Food Form
           </Typography>
           <Box
             component="form"
@@ -109,13 +110,12 @@ export default function Form() {
                   }}
                   autoFocus
                 />
-                
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  type="tel"
+                  type="number"
                   error={isError}
                   id="Phone"
                   label="Phone"
@@ -163,17 +163,6 @@ export default function Form() {
               </Grid>
               <br />
 
-              {floor && toilet ? (
-                <Toilet
-                  setWashedRegularly={setWashedRegularly}
-                  setWaterSupply={setWaterSupply}
-                  setFlushWorking={setFlushWorking}
-                  setWaterLekage={setWaterLekage}
-                />
-              ) : (
-                <></>
-              )}
-
               <Grid item xs={12}>
                 <Typography variant="h6" component="h1">
                   Rate our Overall Cleanliness
@@ -189,17 +178,73 @@ export default function Form() {
                   min={0}
                   max={10}
                 />
+                <Typography variant="h6" component="h1">
+                  Quality of Food
+                </Typography>
+                <Slider
+                  onChange={(e) => {
+                    setFoodQuality(e.target.value);
+                  }}
+                  valueLabelDisplay="auto"
+                  defaultValue={5}
+                  step={1}
+                  marks
+                  min={0}
+                  max={10}
+                />
+                <Typography variant="h6" component="h1">
+                  Taste of Food
+                </Typography>
+                <Slider
+                  onChange={(e) => {
+                    setFoodTaste(e.target.value);
+                  }}
+                  valueLabelDisplay="auto"
+                  defaultValue={5}
+                  step={1}
+                  marks
+                  min={0}
+                  max={10}
+                />
+                <Typography variant="h6" component="h1">
+                  Service Quality
+                </Typography>
+                <Slider
+                  onChange={(e) => {
+                    setServiceQuality(e.target.value);
+                  }}
+                  valueLabelDisplay="auto"
+                  defaultValue={5}
+                  step={1}
+                  marks
+                  min={0}
+                  max={10}
+                />
+                <Typography variant="h6" component="h1">
+                  Ambience
+                </Typography>
+                <Slider
+                  onChange={(e) => {
+                    setAmbience(e.target.value);
+                  }}
+                  valueLabelDisplay="auto"
+                  defaultValue={5}
+                  step={1}
+                  marks
+                  min={0}
+                  max={10}
+                />
               </Grid>
 
               <Grid item xs={12}>
                 <TextField
                   id="outlined-textarea"
-                  label="Complaints"
-                  placeholder="Complaint"
+                  label="Feedback"
+                  placeholder="Feedback"
                   multiline
                   fullWidth
                   onChange={(e) => {
-                    setComplaint(e.target.value);
+                    setFeedback(e.target.value);
                   }}
                 />
               </Grid>
