@@ -14,7 +14,6 @@ import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
 import {InputAdornment} from '@mui/material'
 
-import { Image, VerifiedUserRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 import Toilet from "./Toilet";
 

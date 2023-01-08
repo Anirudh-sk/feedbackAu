@@ -15,7 +15,6 @@ import Radio from "@mui/material/Radio";
 import { FormLabel, InputAdornment } from "@mui/material";
 
 
-import { VerifiedUserRounded } from "@mui/icons-material";
 import React, { useState } from "react";
 
 function Copyright(props) {
