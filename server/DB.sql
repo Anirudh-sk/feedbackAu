@@ -1,13 +1,9 @@
-CREATE DATABASE employee;
+CREATE DATABASE testdb;
 
-CREATE TABLE employees(
-    Emp_ID serial primary key UNIQUE,
-    EmpName varchar(255) NOT NULL,
-    Age INT,
-    Department VARCHAR(255)
-);
-
-CREATE Table department(
-    Dept_ID serial PRIMARY key UNIQUE,
-    Department VARCHAR(255) UNIQUE
+CREATE TABLE feedback(
+    ID serial primary key UNIQUE,
+    Building varchar(50) NOT NULL,
+    Floor varchar(2) NOT NULL,
+    Toilet VARCHAR(1) NOT NULL,
+    Feedback VARCHAR(255)
 );
