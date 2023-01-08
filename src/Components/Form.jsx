@@ -49,7 +49,7 @@ export default function Form() {
   const [isError, setIsError] = useState(false);
 
   const [Type, setType] = useState("");
-  const [Complaint, setComplaint] = useState("");
+  const [Feedback, setFeedback] = useState("");
   const [Cleanliness, setCleanliness] = useState(5);
   const [WashedRegularly, setWashedRegularly] = useState(0);
   const [WaterSupply, setWaterSupply] = useState(0);
@@ -62,7 +62,7 @@ export default function Form() {
       Name,
       Phone,
       Type,
-      Complaint,
+      Feedback,
       Cleanliness,
       WashedRegularly,
       WaterLekage,
@@ -194,12 +194,12 @@ export default function Form() {
               <Grid item xs={12}>
                 <TextField
                   id="outlined-textarea"
-                  label="Complaints"
-                  placeholder="Complaint"
+                  label="Feedbacks"
+                  placeholder="Feedback"
                   multiline
                   fullWidth
                   onChange={(e) => {
-                    setComplaint(e.target.value);
+                    setFeedback(e.target.value);
                   }}
                 />
               </Grid>
