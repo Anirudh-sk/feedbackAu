@@ -39,7 +39,7 @@ const theme = createTheme();
 
 export default function Form() {
   const queryParameters = new URLSearchParams(window.location.search);
-  // const building = queryParameters.get("building");
+  const building = queryParameters.get("building");
   const floor = queryParameters.get("floor");
   const toilet = queryParameters.get("toilet");
 
@@ -67,6 +67,9 @@ export default function Form() {
       WaterLekage,
       WaterSupply,
       FlushWorking,
+      building,
+      floor,
+      toilet
     };
     console.log(data);
   };

@@ -38,9 +38,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Food() {
-  // const queryParameters = new URLSearchParams(window.location.search);
-  // const building = queryParameters.get("building");
-  // const floor = queryParameters.get("floor");
+  const queryParameters = new URLSearchParams(window.location.search);
+  const building = queryParameters.get("building");
+  const floor = queryParameters.get("floor");
 
   const [Name, setName] = useState("");
   const [Phone, setPhone] = useState(0);
@@ -66,7 +66,9 @@ export default function Food() {
       FoodQuality,
       FoodTaste,
       ServiceQuality,
-      Ambience
+      Ambience,
+      building,
+      floor
       
     };
     console.log(data);
