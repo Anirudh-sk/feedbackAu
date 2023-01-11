@@ -5,6 +5,7 @@ import Food from "./Components/Food";
 import Security from "./Components/Security";
 import Error from "./Components/Error";
 import Thankyou from "./Components/Thankyou";
+import Download from "./Components/Download";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/security" element={<Security/>}/>
           <Route path="/error" element={<Error/>}/>
           <Route path="/thankyou" element={<Thankyou/>}/>
+          <Route path="/download" element={<Download/>}/>
 
           {/* <Form /> */}
         </Routes>
