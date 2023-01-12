@@ -13,7 +13,7 @@ app.post("/feedback",async (req,res)=>{
         console.log(req.body);
         // const newUser = await pool.query("select * from pg_catalog.pg_tables;");
         console.log('inserting');
-        const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.Building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
+        const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
         if(typeof req.body.flushworking != "undefined"){
             console.log("Entered flush");
             const flush = await pool.query("INSERT INTO toiletForm (ID, Cleanliness, \
@@ -33,8 +33,8 @@ app.post("/feedback",async (req,res)=>{
         }
 
         else if(typeof req.body.FoodQuality != "undefined"){
-            console.log("Entered Security");
-            const food = await pool.query("INSERT INTO securityForm (ID, Feedback, \
+            console.log("Entered food");
+            const food = await pool.query("INSERT INTO foodForm (ID, Feedback, \
                 Cleanliness, FoodQuality, FoodTaste, ServiceQuality, Ambience) VALUES($1, $2, $3, $4, $5, $6, $7)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.Cleanliness, req.body.FoodQuality, req.body.FoodTaste, req.body.ServiceQuality, req.body.Ambience]);
                 // res.json({newUser, flush});
                 // console.log(newUser);
