@@ -52,7 +52,7 @@ export default function Security() {
   const [SecurityDrunk, setSecurityDrunk] = useState(0);
   const [SecurityAlertness, setSecurityAlertness] = useState(5);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = {
       Name,
@@ -65,6 +65,18 @@ export default function Security() {
       SecurityMisbehaving
     };
     console.log(data);
+    const res= await fetch("http://localhost:5000/feedback",{
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    }).then(()=>{
+      console.log(res);
+      // window.location='/thankyou'
+    }).catch(error=>{
+      console.log(error);
+      // window.location='/error'
+    })
+  
   };
 
   return (
