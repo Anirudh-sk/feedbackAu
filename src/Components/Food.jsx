@@ -78,10 +78,10 @@ export default function Food() {
       body: JSON.stringify(data)
     }).then(()=>{
       console.log(res);
-      // window.location='/thankyou'
+      window.location='/thankyou'
     }).catch(error=>{
       console.log(error);
-      // window.location='/error'
+      window.location='/error'
     })
   };
 

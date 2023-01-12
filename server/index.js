@@ -14,7 +14,7 @@ app.post("/feedback",async (req,res)=>{
         // const newUser = await pool.query("select * from pg_catalog.pg_tables;");
         console.log('inserting');
         const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
-        if(typeof req.body.flushworking != "undefined"){
+        if(typeof req.body.FlushWorking != "undefined"){
             console.log("Entered flush");
             const flush = await pool.query("INSERT INTO toiletForm (ID, Cleanliness, \
                 Complaint, Flushworking, WashedRegularly, WaterLeakage, WaterSupply) VALUES($1, $2, $3, $4, $5, $6, $7)",[newUser['rows'][0]['id'], req.body.Cleanliness, req.body.Complaint, req.body.FlushWorking, req.body.WashedRegularly, req.body.WaterLekage, req.body.WaterSupply]);
