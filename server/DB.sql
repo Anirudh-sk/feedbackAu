@@ -5,7 +5,7 @@ CREATE TABLE basicInfo(
     Building varchar(50) NOT NULL,
     Floor varchar(2) NOT NULL,
     Name varchar(25) NOT NULL,
-    Phone int,
+    Phone VARCHAR(10),
     Type varchar(15)
 );
 

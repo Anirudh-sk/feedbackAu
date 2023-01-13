@@ -15,13 +15,13 @@ const card = (
                 Anna University Feedback Form
             </Typography>
             <Typography variant="h5" component="div">
-                Thank you
+                Error
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                for taking your time to fill the form
+                Some Error Occured
             </Typography>
             <Typography variant="body2">
-                Form Submitted Successfully
+                Please Contact Admin
             </Typography>
         </CardContent>
         <CardActions>
@@ -42,7 +42,7 @@ export default function Error() {
             textAlign="center"
             style={{ minHeight: '100vh' }}
         >
-            <Card variant="elevation"  style={{backgroundColor:'#CAD5E2'}} >{card}</Card>
+            <Card variant="elevation" style={{ backgroundColor: '#CAD5E2' }} >{card}</Card>
         </Grid>
     );
 }
