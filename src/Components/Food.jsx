@@ -101,7 +101,7 @@ export default function Food() {
             
             </Avatar>
           <Typography component="h1" variant="h5">
-            Food Form {building}
+            Food Form 
           </Typography>
           <Box
             component="form"
