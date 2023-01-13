@@ -12,12 +12,24 @@ app.post("/feedback",async (req,res)=>{
     try {
         console.log(req.body);
         // const newUser = await pool.query("select * from pg_catalog.pg_tables;");
-        console.log('inserting');
-        const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
-        if(typeof req.body.FlushWorking != "undefined"){
+        if(req.body.building == null || typeof req.body.floor == null || typeof req.body.Name == null){
+            res.status(422).end();
+            throw new Error('Invalid input.')
+        }
+
+        if(typeof req.body.FlushWorking != "undefined" && req.body.toilet == null){
+            console.log("building entered");
+            const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
+            const buildingFeedback = await pool.query("INSERT INTO buildingForm (ID, Feedback, Cleanliness) VALUES($1, $2, $3)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.Cleanliness]);
+            res.status(200).end();
+        }
+
+        else if(typeof req.body.FlushWorking != "undefined"){
             console.log("Entered flush");
+            const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
             const flush = await pool.query("INSERT INTO toiletForm (ID, Cleanliness, \
                 Complaint, Flushworking, WashedRegularly, WaterLeakage, WaterSupply) VALUES($1, $2, $3, $4, $5, $6, $7)",[newUser['rows'][0]['id'], req.body.Cleanliness, req.body.Complaint, req.body.FlushWorking, req.body.WashedRegularly, req.body.WaterLekage, req.body.WaterSupply]);
+            res.status(200).end()
                 // res.json({newUser, flush});
                 // console.log(newUser);
                 // console.log(newUser['rows'][0]['id'])
@@ -25,8 +37,10 @@ app.post("/feedback",async (req,res)=>{
 
         else if(typeof req.body.SecurityAvailability != "undefined"){
             console.log("Entered Security");
+            const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
             const security = await pool.query("INSERT INTO securityForm (ID, Feedback, \
                 SecurityAvailability, SecurityMisbehaving, SecurityDrunk, SecurityAlertness) VALUES($1, $2, $3, $4, $5, $6)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.SecurityAvailability, req.body.SecurityMisbehaving, req.body.SecurityDrunk, req.body.SecurityAlertness]);
+            res.status(200).end();
                 // res.json({newUser, flush});
                 // console.log(newUser);
                 // console.log(newUser['rows'][0]['id'])
@@ -34,14 +48,18 @@ app.post("/feedback",async (req,res)=>{
 
         else if(typeof req.body.FoodQuality != "undefined"){
             console.log("Entered food");
+            const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type) VALUES($1, $2, $3, $4, $5) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
             const food = await pool.query("INSERT INTO foodForm (ID, Feedback, \
                 Cleanliness, FoodQuality, FoodTaste, ServiceQuality, Ambience) VALUES($1, $2, $3, $4, $5, $6, $7)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.Cleanliness, req.body.FoodQuality, req.body.FoodTaste, req.body.ServiceQuality, req.body.Ambience]);
+            res.status(200).end();
                 // res.json({newUser, flush});
                 // console.log(newUser);
                 // console.log(newUser['rows'][0]['id'])
         }
-        
 
+
+        
+        res.status(406).end();
         // res.json({newUser});
         // res.json(newDept)
         
