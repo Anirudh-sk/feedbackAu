@@ -12,10 +12,10 @@ app.post("/feedback",async (req,res)=>{
     try {
         console.log(req.body);
         // const newUser = await pool.query("select * from pg_catalog.pg_tables;");
-        if(req.body.building == null || typeof req.body.floor == null || typeof req.body.Name == null){
-            res.status(422).end();
-            throw new Error('Invalid input.')
-        }
+        // if(req.body.building == null || typeof req.body.floor == null || typeof req.body.toilet == null){
+        //     res.status(422).end();
+        //     throw new Error('Invalid input.')
+        // }
 
         if(typeof req.body.FlushWorking != "undefined" && req.body.toilet == null){
             console.log("building entered");

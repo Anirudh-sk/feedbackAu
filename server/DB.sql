@@ -2,9 +2,9 @@ CREATE DATABASE testdb;
 
 CREATE TABLE basicInfo(
     ID serial primary key UNIQUE,
-    Building varchar(50) NOT NULL,
-    Floor varchar(2) NOT NULL,
-    Name varchar(25) NOT NULL,
+    Building varchar(50) ,
+    Floor varchar(2) ,
+    Name varchar(25) ,
     Phone VARCHAR(10),
     Type varchar(15)
 );
@@ -34,9 +34,10 @@ CREATE TABLE foodForm(
 CREATE TABLE securityForm(
     ID INT,
     SecurityAlertness INT,
-    SecurityAvailability INT,
+    SecurityAvailability VARCHAR(3),
     SecurityDrunk VARCHAR(3),
     SecurityMisbehaving VARCHAR(3),
+    Feedback VARCHAR(255),
     CONSTRAINT fk_ID FOREIGN KEY(ID) REFERENCES basicInfo(ID)
 );
 
