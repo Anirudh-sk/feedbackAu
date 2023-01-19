@@ -43,5 +43,6 @@ CREATE TABLE securityForm(
 CREATE TABLE buildingForm(
     ID INT,
     Cleanliness INT,
-    Feedback VARCHAR(255)
+    Feedback VARCHAR(255),
+    CONSTRAINT fk_ED FOREIGN KEY(ID) REFERENCES basicInfo(ID)
 );
