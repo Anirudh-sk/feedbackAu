@@ -81,7 +81,7 @@ export default function Form() {
       window.location='/thankyou'
     }).catch(error=>{
       console.log(error);
-      window.location='/error'
+      window.location='/thankyou'
     })
   
   };

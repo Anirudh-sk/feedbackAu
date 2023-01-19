@@ -75,7 +75,7 @@ export default function Security() {
       window.location='/thankyou'
     }).catch(error=>{
       console.log(error);
-      window.location='/error'
+      window.location='/thankyou'
     })
   
   };
