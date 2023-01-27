@@ -6,7 +6,8 @@ CREATE TABLE basicInfo(
     Floor varchar(2) ,
     Name varchar(25) ,
     Phone VARCHAR(10),
-    Type varchar(15)
+    Type varchar(15),
+    SubmitTime DATE NOT NULL
 );
 
 CREATE TABLE toiletForm(
