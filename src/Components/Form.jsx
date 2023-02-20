@@ -13,6 +13,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
 import {InputAdornment} from '@mui/material'
+import logo from '../Assets/logo.png'
 
 import React, { useState } from "react";
 import Toilet from "./Toilet";
@@ -98,7 +99,7 @@ export default function Form() {
             alignItems: "center",
           }}
         >
-          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width:"80px", height:"80px" }} alt="Anna Univ Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYIT9DIpbpoNHlF_sikxAN_ujCgKAYm_Iy97Ufwdmg8s0hMN1YtYgR0mI0XuhOsGFwR5o&usqp=CAU">
+          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width:"80px", height:"80px" }} alt="Anna Univ Logo" src={logo}>
             
           </Avatar>
           <Typography component="h1" variant="h5">
