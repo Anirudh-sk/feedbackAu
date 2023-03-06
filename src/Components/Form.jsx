@@ -209,8 +209,8 @@ export default function Form() {
               <Grid item xs={12}>
                 <TextField
                   id="outlined-textarea"
-                  label="Feedbacks"
-                  placeholder="Feedback"
+                  label="FSuggestions"
+                  placeholder="Suggestions"
                   multiline
                   fullWidth
                   onChange={(e) => {

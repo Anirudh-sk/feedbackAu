@@ -266,8 +266,8 @@ export default function Security() {
               <Grid item xs={12}>
                 <TextField
                   id="outlined-textarea"
-                  label="Feedback"
-                  placeholder="Feedback"
+                  label="Suggestions"
+                  placeholder="Suggestions"
                   multiline
                   fullWidth
                   onChange={(e) => {
