@@ -157,9 +157,9 @@ export default function Security() {
                   />
                   <FormControlLabel
                     id="teacher"
-                    value="teacher"
+                    value="staff"
                     control={<Radio />}
-                    label="Teacher"
+                    label="Staff"
                   />
                   <FormControlLabel
                     id="guest"
