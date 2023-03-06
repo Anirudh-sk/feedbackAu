@@ -74,7 +74,9 @@ export default function Form() {
       FlushWorking,
       building,
       floor,
-      toilet
+      toilet,
+      Cobwebs,
+      Windows
     };
     console.log(data);
     const res = await fetch("http://localhost:5000/feedback", {
