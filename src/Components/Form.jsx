@@ -12,7 +12,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
-import {InputAdornment} from '@mui/material'
+import { FormLabel, InputAdornment } from '@mui/material'
 import logo from '../Assets/logo.png'
 
 import React, { useState } from "react";
@@ -51,12 +51,15 @@ export default function Form() {
   const [Type, setType] = useState("");
   const [Feedback, setFeedback] = useState("");
   const [Cleanliness, setCleanliness] = useState(5);
+  const [CleanlinessFloor, setCleanlinessFloor] = useState(5);
+  const [Cobwebs, setCobwebs] = useState("");
+  const [Windows, setWindows] = useState("");
   const [WashedRegularly, setWashedRegularly] = useState(0);
   const [WaterSupply, setWaterSupply] = useState(0);
   const [FlushWorking, setFlushWorking] = useState(0);
   const [WaterLekage, setWaterLekage] = useState(0);
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       Name,
@@ -64,6 +67,7 @@ export default function Form() {
       Type,
       Feedback,
       Cleanliness,
+      CleanlinessFloor,
       WashedRegularly,
       WaterLekage,
       WaterSupply,
@@ -73,18 +77,18 @@ export default function Form() {
       toilet
     };
     console.log(data);
-    const res= await fetch("http://localhost:5000/feedback",{
-      method:'POST',
-      headers:{"Content-Type": "application/json"},
+    const res = await fetch("http://localhost:5000/feedback", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
-    }).then(()=>{
+    }).then(() => {
       console.log(res);
-      window.location='/thankyou'
-    }).catch(error=>{
+      window.location = '/thankyou'
+    }).catch(error => {
       console.log(error);
-      window.location='/thankyou'
+      window.location = '/thankyou'
     })
-  
+
   };
 
   return (
@@ -99,8 +103,8 @@ export default function Form() {
             alignItems: "center",
           }}
         >
-          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width:"80px", height:"80px" }} alt="Anna Univ Logo" src={logo}>
-            
+          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width: "80px", height: "80px" }} alt="Anna Univ Logo" src={logo}>
+
           </Avatar>
           <Typography component="h1" variant="h5">
             Feedback Form
@@ -124,7 +128,7 @@ export default function Form() {
                   }}
                   autoFocus
                 />
-                
+
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -138,12 +142,12 @@ export default function Form() {
                   autoComplete="phone"
                   onChange={(e) => {
                     setPhone(e.target.value);
-                    e.target.value.length > 10 ? setIsError(true):setIsError(false)
+                    e.target.value.length > 10 ? setIsError(true) : setIsError(false)
                   }}
                   InputProps={{
                     startAdornment: <InputAdornment position="start">
-                       +91
-                       </InputAdornment>,
+                      +91
+                    </InputAdornment>,
                   }}
                 />
               </Grid>
@@ -186,7 +190,59 @@ export default function Form() {
                   setWaterLekage={setWaterLekage}
                 />
               ) : (
-                <></>
+                <>
+                  <Grid item xs={12}>
+                    <Typography variant="h6" component="h1">
+                      Rate Cleanliness of Floor
+                    </Typography>
+                    <Slider
+                      onChange={(e) => {
+                        setCleanlinessFloor(e.target.value);
+                      }}
+                      valueLabelDisplay="auto"
+                      defaultValue={5}
+                      step={1}
+                      marks
+                      min={0}
+                      max={10}
+                    />
+
+                    <FormLabel>Cobwebs Present</FormLabel>
+                    <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                      onChange={(e) => {
+                        setCobwebs(e.target.value);
+                      }}
+                    >
+                      <FormControlLabel
+                        id="Yes"
+                        value="Yes"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel id="No" value="No" control={<Radio />} label="No" />
+                    </RadioGroup>
+                    <FormLabel>Dust on Windows</FormLabel>
+                    <RadioGroup
+                      row
+                      aria-labelledby="demo-row-radio-buttons-group-label"
+                      name="row-radio-buttons-group"
+                      onChange={(e) => {
+                        setWindows(e.target.value);
+                      }}
+                    >
+                      <FormControlLabel
+                        id="Yes"
+                        value="Yes"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel id="No" value="No" control={<Radio />} label="No" />
+                    </RadioGroup>
+                  </Grid>
+                </>
               )}
 
               <Grid item xs={12}>
@@ -209,7 +265,7 @@ export default function Form() {
               <Grid item xs={12}>
                 <TextField
                   id="outlined-textarea"
-                  label="FSuggestions"
+                  label="Suggestions"
                   placeholder="Suggestions"
                   multiline
                   fullWidth
