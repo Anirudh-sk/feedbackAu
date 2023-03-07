@@ -46,5 +46,8 @@ CREATE TABLE buildingForm(
     ID INT,
     Cleanliness INT,
     Feedback VARCHAR(255),
+    Cobwebs VARCHAR(3),
+    CleanlinessFloor INT,
+    Windows VARCHAR(3),
     CONSTRAINT fk_ED FOREIGN KEY(ID) REFERENCES basicInfo(ID)
 );
