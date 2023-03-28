@@ -101,7 +101,7 @@ export default function Food() {
             
             </Avatar>
           <Typography component="h1" variant="h5">
-            Food Form 
+            Food Court 
           </Typography>
           <Box
             component="form"
@@ -219,7 +219,7 @@ export default function Food() {
                   max={10}
                 />
                 <Typography variant="h6" component="h1">
-                  Service Quality
+                  Service Person Behaviour
                 </Typography>
                 <Slider
                   onChange={(e) => {

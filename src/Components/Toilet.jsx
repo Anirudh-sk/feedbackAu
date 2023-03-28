@@ -71,7 +71,7 @@ function Toilet({
           <FormControlLabel id="No" value="No" control={<Radio />} label="No" />
         </RadioGroup>
         <br />
-        <FormLabel>Water Lekage</FormLabel>
+        <FormLabel>Water Leakage</FormLabel>
 
         <RadioGroup
           row

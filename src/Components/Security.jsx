@@ -48,11 +48,12 @@ export default function Security() {
   const [Type, setType] = useState("");
   const [Feedback, setFeedback] = useState("");
   const [SecurityAvailability, setSecurityAvailability] = useState(0);
+  const [SecurityAvailabilityReason, setSecurityAvailabilityReason] = useState(0);
   const [SecurityMisbehaving, setSecurityMisbehaving] = useState(0);
   const [SecurityDrunk, setSecurityDrunk] = useState(0);
   const [SecurityAlertness, setSecurityAlertness] = useState(5);
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
       Name,
@@ -63,21 +64,22 @@ export default function Security() {
       SecurityAlertness,
       SecurityDrunk,
       SecurityMisbehaving,
-      
+      SecurityAvailabilityReason
+
     };
     console.log(data);
-    const res= await fetch("http://localhost:5000/feedback",{
-      method:'POST',
-      headers:{"Content-Type": "application/json"},
+    const res = await fetch("http://localhost:5000/feedback", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
-    }).then(()=>{
+    }).then(() => {
       console.log(res);
-      window.location='/thankyou'
-    }).catch(error=>{
+      window.location = '/thankyou'
+    }).catch(error => {
       console.log(error);
-      window.location='/thankyou'
+      window.location = '/thankyou'
     })
-  
+
   };
 
   return (
@@ -92,9 +94,9 @@ export default function Security() {
             alignItems: "center",
           }}
         >
-          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width:"80px", height:"80px" }} alt="Anna Univ Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYIT9DIpbpoNHlF_sikxAN_ujCgKAYm_Iy97Ufwdmg8s0hMN1YtYgR0mI0XuhOsGFwR5o&usqp=CAU">
-            
-            </Avatar>
+          <Avatar variant="square" sx={{ m: 1, bgcolor: "powderblue", width: "80px", height: "80px" }} alt="Anna Univ Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYIT9DIpbpoNHlF_sikxAN_ujCgKAYm_Iy97Ufwdmg8s0hMN1YtYgR0mI0XuhOsGFwR5o&usqp=CAU">
+
+          </Avatar>
           <Typography component="h1" variant="h5">
             Security Form
           </Typography>
@@ -131,12 +133,12 @@ export default function Security() {
                   autoComplete="phone"
                   onChange={(e) => {
                     setPhone(e.target.value);
-                    e.target.value.length > 10 ? setIsError(true):setIsError(false)
+                    e.target.value.length > 10 ? setIsError(true) : setIsError(false)
                   }}
                   InputProps={{
                     startAdornment: <InputAdornment position="start">
-                       +91
-                       </InputAdornment>,
+                      +91
+                    </InputAdornment>,
                   }}
                 />
               </Grid>
@@ -197,7 +199,48 @@ export default function Security() {
                 </RadioGroup>
                 <br />
 
-                <FormLabel>Is the Security Misbehaving</FormLabel>
+                {
+                  SecurityAvailability === "Yes" || SecurityAvailability=== 0 ? <></> :
+                    <>
+                      <FormLabel>Reason</FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
+                        onChange={(e) => {
+                          setSecurityAvailabilityReason(e.target.value);
+                        }}
+                      >
+                        <FormControlLabel
+                          id="Sleeping"
+                          value="Sleeping"
+                          control={<Radio />}
+                          label="Sleeping"
+                        />
+                        <FormControlLabel
+                          id="Talking on Phone"
+                          value="Talking on Phone"
+                          control={<Radio />}
+                          label="Talking on Phone"
+                        />
+                        <FormControlLabel
+                          id="Chatting with others"
+                          value="Chatting with others"
+                          control={<Radio />}
+                          label="Chatting with others"
+                        />
+                        <FormControlLabel
+                          id="Other"
+                          value="Other"
+                          control={<Radio />}
+                          label="Other"
+                        />
+                      </RadioGroup>
+                      <br></br>
+                    </>
+                }
+
+                <FormLabel>Is the Security Misbehaving ?</FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -220,7 +263,7 @@ export default function Security() {
                   />
                 </RadioGroup>
                 <br />
-                <FormLabel>Is the Security Drunk</FormLabel>
+                <FormLabel>Is the Security Under the Influence of Alchohol ? </FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -244,24 +287,24 @@ export default function Security() {
                 </RadioGroup>
                 <br />
 
-                </Grid>
-                <Typography variant="h6" component="h1">
-                  Rate the Securitys' Alertness
-                </Typography>
-                <Slider
-                  onChange={(e) => {
-                    setSecurityAlertness(e.target.value);
-                  }}
-                  valueLabelDisplay="auto"
-                  defaultValue={5}
-                  step={1}
-                  marks
-                  min={0}
-                  max={10}
-                />
-                
-                
-                 
+              </Grid>
+              <Typography variant="h6" component="h1">
+                Rate the Security Personael Alertness
+              </Typography>
+              <Slider
+                onChange={(e) => {
+                  setSecurityAlertness(e.target.value);
+                }}
+                valueLabelDisplay="auto"
+                defaultValue={5}
+                step={1}
+                marks
+                min={0}
+                max={10}
+              />
+
+
+
 
               <Grid item xs={12}>
                 <TextField
