@@ -12,7 +12,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
-import {InputAdornment} from '@mui/material'
+import {Divider, InputAdornment} from '@mui/material'
 
 
 import React, { useState } from "react";
@@ -110,6 +110,8 @@ export default function Food() {
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
+              <p>Confidential</p>
+                <Divider variant="fullWidth" sx={{ borderBottomWidth: 2 }} style={{backgroundColor:"black"}}/><br />
                 <TextField
                   autoComplete="given-name"
                   name="Name"
@@ -143,6 +145,9 @@ export default function Food() {
                        </InputAdornment>,
                   }}
                 />
+                <br/><br/>
+                
+                <Divider variant="fullWidth" sx={{ borderBottomWidth: 2 }} style={{backgroundColor:"black"}}/><br />
               </Grid>
               <Grid item xs={12}>
                 <RadioGroup
@@ -176,20 +181,7 @@ export default function Food() {
               <br />
 
               <Grid item xs={12}>
-                <Typography variant="h6" component="h1">
-                  Rate our Overall Cleanliness
-                </Typography>
-                <Slider
-                  onChange={(e) => {
-                    setCleanliness(e.target.value);
-                  }}
-                  valueLabelDisplay="auto"
-                  defaultValue={5}
-                  step={1}
-                  marks
-                  min={0}
-                  max={10}
-                />
+                
                 <Typography variant="h6" component="h1">
                   Quality of Food
                 </Typography>
@@ -238,6 +230,20 @@ export default function Food() {
                 <Slider
                   onChange={(e) => {
                     setAmbience(e.target.value);
+                  }}
+                  valueLabelDisplay="auto"
+                  defaultValue={5}
+                  step={1}
+                  marks
+                  min={0}
+                  max={10}
+                />
+              <Typography variant="h6" component="h1">
+                  Rate our Overall Cleanliness
+                </Typography>
+                <Slider
+                  onChange={(e) => {
+                    setCleanliness(e.target.value);
                   }}
                   valueLabelDisplay="auto"
                   defaultValue={5}

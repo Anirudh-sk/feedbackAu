@@ -12,7 +12,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
-import { FormLabel, InputAdornment } from "@mui/material";
+import { Divider, FormLabel, InputAdornment } from "@mui/material";
 
 
 import React, { useState } from "react";
@@ -98,7 +98,7 @@ export default function Security() {
 
           </Avatar>
           <Typography component="h1" variant="h5">
-            Security Form
+            Campus Security Form
           </Typography>
           <Box
             component="form"
@@ -107,6 +107,8 @@ export default function Security() {
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
+              <p>Confidential</p>
+                <Divider variant="fullWidth" sx={{ borderBottomWidth: 2 }} style={{backgroundColor:"black"}}/><br />
                 <TextField
                   autoComplete="given-name"
                   name="Name"
@@ -141,6 +143,8 @@ export default function Security() {
                     </InputAdornment>,
                   }}
                 />
+                <br/><br/>
+                <Divider variant="fullWidth" sx={{ borderBottomWidth: 2 }} style={{backgroundColor:"black"}}/><br />
               </Grid>
               <Grid item xs={12}>
                 <RadioGroup
@@ -175,7 +179,7 @@ export default function Security() {
 
               <Grid item xs={12}>
 
-                <FormLabel>Is the Security available ?</FormLabel>
+                <FormLabel>Is the Security Personnel available ?</FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -240,7 +244,7 @@ export default function Security() {
                     </>
                 }
 
-                <FormLabel>Is the Security Misbehaving ?</FormLabel>
+                <FormLabel>Is the Security Personnel Misbehaving ?</FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -263,7 +267,7 @@ export default function Security() {
                   />
                 </RadioGroup>
                 <br />
-                <FormLabel>Is the Security Under the Influence of Alchohol ? </FormLabel>
+                <FormLabel>Is the Security Personnel Under the Influence of Alchohol ? </FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -289,7 +293,7 @@ export default function Security() {
 
               </Grid>
               <Typography variant="h6" component="h1">
-                Rate the Security Personael Alertness
+                Rate the Security Personnel Alertness
               </Typography>
               <Slider
                 onChange={(e) => {
