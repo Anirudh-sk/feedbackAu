@@ -20,7 +20,7 @@ app.post("/feedback",async (req,res)=>{
         if(typeof req.body.FlushWorking != "undefined" && req.body.toilet == null){
             console.log("building entered");
             const newUser= await pool.query("INSERT INTO basicInfo (Building, Floor, Name, Phone, Type, SubmitTime) VALUES($1, $2, $3, $4, $5, current_timestamp) RETURNING *",[req.body.building,req.body.floor,req.body.Name,req.body.Phone,req.body.Type]);
-            const buildingFeedback = await pool.query("INSERT INTO buildingForm (ID, Feedback, Cleanliness) VALUES($1, $2, $3)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.Cleanliness]);
+            const buildingFeedback = await pool.query("INSERT INTO buildingForm (ID, Feedback, Cleanliness, CleanlinessFloor, Cobwebs, Windows) VALUES($1, $2, $3, $4, $5, $6)",[newUser['rows'][0]['id'], req.body.Feedback, req.body.Cleanliness, req.body.CleanlinessFloor, req.body.Cobwebs, req.body.Windows]);
             res.status(200).end();
         }
 
